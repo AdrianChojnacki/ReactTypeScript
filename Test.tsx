@@ -1,20 +1,29 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 interface TestProps {
-  message: string;
+  message: string | undefined;
+  text?: {
+    info: string;
+  };
   onCLickHandler: () => void;
 }
 
-class Test extends PureComponent<TestProps> {
-  render() {
-    const { message, onCLickHandler } = this.props;
-    return (
-      <div>
-        <p>{message}</p>
-        <button onClick={onCLickHandler}>Wyświetl info w konsoli</button>
-      </div>
-    );
-  }
-}
+const Test = (props) => {
+  const { message, text, onCLickHandler } = props;
+
+  const showInConsole = (message: string) => {
+    console.log(message);
+  };
+
+  return (
+    <div>
+      <p>{message}</p>
+      <p>{text}</p>
+      <button onClick={() => showInConsole(message)}>
+        Wyświetl info w konsoli
+      </button>
+    </div>
+  );
+};
 
 export default Test;
