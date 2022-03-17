@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 
 interface TestProps {
   message: string | undefined;
@@ -8,8 +8,9 @@ interface TestProps {
   onCLickHandler: () => void;
 }
 
-const Test = (props) => {
-  const { message, text, onCLickHandler } = props;
+const Test: React.FC<TestProps> = (props) => {
+  const { message, text, onCLickHandler, number } = props;
+  const [counter, setCounter] = useState<number>(5);
 
   const showInConsole = (message: string) => {
     console.log(message);
@@ -19,7 +20,7 @@ const Test = (props) => {
     <div>
       <p>{message}</p>
       <p>{text}</p>
-      <button onClick={() => showInConsole(message)}>
+      <button onClick={() => showInConsole(counter)}>
         Wyświetl info w konsoli
       </button>
     </div>
